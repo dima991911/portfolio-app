@@ -1,0 +1,218 @@
+.contact {
+  color: #545454;
+
+
+  h1 {
+    margin-bottom: 30px;
+    color: black;
+    font-weight: bold;
+
+    @media (max-width: 576px) {
+      margin-bottom: 20px;
+    }
+
+  }
+
+  .about {
+    .about-description {
+      font-size: 18px;
+
+      @media (max-width: 576px) {
+        font-size: 16px;
+      }
+    }
+
+    .about-social {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 2px solid #5aa3db;
+
+      h3 {
+        color: black;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      .social-icon-block {
+        margin: 0;
+        margin-bottom: 30px;
+
+        @media (max-width: 576px) {
+          margin-bottom: 15px;
+        }
+
+        .social-icon {
+          display: inline-block;
+          margin-right: 15px;
+          width: 50px;
+          height: 50px;
+          border-radius: 5px;
+          background: #f5f5f5;
+          font-size: 30px;
+          text-align: center;
+          line-height: 50px;
+          color: #545454;
+          transition: 0.2s;
+
+          @media (max-width: 576px) {
+            margin-bottom: 15px;
+          }
+
+          &:hover {
+            color: #5aa3db;
+          }
+        }
+      }
+
+      .about-contact {
+        font-size: 20px;
+
+        @media (max-width: 576px) {
+          font-size: 17px;
+          margin-bottom: 15px;
+        }
+
+        .about-contact-item {
+          margin-bottom: 10px;
+          font-weight: bold;
+
+          a {
+            color: #5aa3db;
+            font-weight: normal;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  /*------------------------Scrollbar------------------------*/
+
+  .dialog::-webkit-scrollbar-track
+  {
+    background-color: #F5F5F5;
+  }
+
+  .dialog::-webkit-scrollbar
+  {
+    width: 7px;
+    background-color: #F5F5F5;
+  }
+
+  .dialog::-webkit-scrollbar-thumb
+  {
+    background-color: #5aa3db;
+  }
+
+  /*------------------------------------*/
+
+  .dialog {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 20px;
+    background: white;
+    background-repeat: repeat;
+    background-size: cover;
+    height: 400px;
+    overflow-y: auto;
+
+    .load {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    .warn-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      transform: translate(-50%,-50%);
+      font-size: 30px;
+      color: #7a7a7a;
+
+      @media (max-width: 576px) {
+        font-size: 16px;
+      }
+    }
+
+    .message {
+      position: relative;
+      padding: 15px;
+      max-width: 70%;
+      margin-top: 40px;
+      overflow: visible;
+      background: #5aa3db;
+      color: #ffffff;
+      border-radius: 5px;
+
+      @media (max-width: 576px) {
+        font-size: 16px;
+      }
+
+      .time {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        white-space: nowrap;
+        font-size: 14px;
+        color: #7a7a7a;
+        text-align: right;
+        transform: translateY(100%);
+      }
+    }
+
+    .message-admin {
+      align-self: flex-end;
+    }
+
+    .admin-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(-50%,-50%);
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      border-radius: 50%;
+
+      img {
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .send-message {
+    width: 100%;
+    position: relative;
+
+    .textarea-message {
+      position: relative;
+      background: white;
+      width: 100%;
+      padding: 10px;
+      display: block;
+      border: none;
+      border-top: 2px solid #5aa3db;
+      z-index: 1000;
+      resize: none;
+      -webkit-box-shadow: 0px 3px 6px -3px rgba(0,0,0,0.4);
+      -moz-box-shadow: 0px 3px 6px -3px rgba(0,0,0,0.4);
+      box-shadow: 0px 3px 6px -3px rgba(0,0,0,0.4);
+    }
+  }
+
+  .send-button {
+    position: absolute;
+    right: 0;
+    transform: translateY(-100%);
+    background: #f5f5f5;
+    border-radius: 0;
+    box-shadow: none;
+    transition: 0.3s;
+    z-index: 1000;
+  }
+}

@@ -1,0 +1,47 @@
+.admin-panel {
+  margin-top: 20px;
+
+  .dialog {
+    padding-right: 20px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column-reverse;
+    max-height: 300px;
+    overflow: auto;
+
+    .message {
+      position: relative;
+      width: 100%;
+      margin-top: 25px;
+
+      .message-wrapper {
+        position: relative;
+        display: inline-block;
+        max-width: 70%;
+        padding: 15px;
+        background: #0583F2;
+        color: #ffffff;
+        border-radius: 5px;
+      }
+
+      .message-time {
+        font-size: 12px;
+        white-space: nowrap;
+        color: #7a7a7a;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translateY(100%);
+      }
+
+      &-admin {
+        text-align: right;
+        align-self: flex-end;
+      }
+    }
+  }
+
+  .msg-input {
+    display: block;
+  }
+}

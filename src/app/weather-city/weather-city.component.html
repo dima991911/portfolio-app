@@ -1,0 +1,28 @@
+<mat-card *ngIf="weatherCity" class="card-weather">
+  <div *ngIf="imageLoad" class="loader">
+    <img src="assets/loader.gif" alt="Load">
+  </div>
+
+  <div [ngClass]="{'loader-card': imageLoad}">
+    <mat-card-title>
+      {{ weatherCity.name || 'Not City' }}
+      <img src="assets/information.png" alt="Info" class="icon-info" (click)="openCityInfo()">
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      <div>
+        {{ weatherCity.weather[0].description.toUpperCase() }}
+        <img src="http://openweathermap.org/img/w/{{weatherCity.weather[0].icon}}.png" class="icon-weather" alt="Icon Weather">
+      </div>
+      <div class="temp">
+        {{ weatherCity.main.temp | number: '1.0-0' }}<span class="deg">°C</span>
+      </div>
+    </mat-card-subtitle>
+
+    <img mat-card-image
+         *ngIf="weather.image"
+         class="photo-city"
+         [src]="weather.image || 'assets/lviv.jpg'"
+         (load)="imageLoadedFinish()">
+  </div>
+</mat-card>

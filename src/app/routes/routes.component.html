@@ -1,0 +1,113 @@
+<div class="container-fluid router page-container">
+  <h1>Find routes</h1>
+  <div class="row">
+    <div class="col-md-8 card-map">
+      <mat-card>
+        <agm-map class="map"
+                 (mapReady)="initMap($event)"
+                 [zoom]="zoom"
+                 (zoomChange)="zoomChange($event)"
+                 [latitude]="startLat"
+                 [longitude]="startLng">
+
+        </agm-map>
+      </mat-card>
+
+    </div>
+    <div class="col-md-4">
+      <div>
+
+        <mat-form-field class="form-item">
+          <input #placeFrom matInput placeholder="Place from">
+        </mat-form-field>
+
+        <mat-form-field class="form-item">
+          <input #placeTo matInput placeholder="Place to">
+        </mat-form-field>
+
+        <mat-form-field class="form-item">
+          <mat-select [(ngModel)]="zoom" placeholder="Map zoom">
+            <mat-option *ngFor="let zoom of createZoomCounts(20)"
+                        [value]="zoom">
+              {{ zoom }}
+
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button
+                #button
+                (click)="createDirections(button)"
+                [disabled]="!placeFrom.value || !placeTo.value || !startDirection || !endDirection">
+          Search Direction
+
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="routes">
+    <div class="row">
+      <div class="col-md-12 route" *ngFor="let route of directions">
+        <mat-card>
+          <mat-card-title>
+            {{ route.routes[0].legs[0].start_address }} - {{ route.routes[0].legs[0].end_address }}
+          </mat-card-title>
+
+          <mat-card-subtitle>
+            <div><span class="title">Departure Time:</span> {{ route.routes[0].legs[0].departure_time.value | date:'medium' }}</div>
+            <div><span class="title">Arrival Time:</span> {{ route.routes[0].legs[0].arrival_time.value | date:'medium' }}</div>
+            <div><span class="title">Distance:</span> {{ route.routes[0].legs[0].distance.text }}</div>
+            <div><span class="title">Duration:</span> {{ route.routes[0].legs[0].duration.text }}</div>
+          </mat-card-subtitle>
+
+          <mat-card-content>
+
+            <div>
+              <h3>Instruction for direction</h3>
+              <mat-accordion>
+                <mat-expansion-panel *ngFor="let step of route.routes[0].legs[0].steps; let i = index">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Step {{ i + 1 }}
+                    </mat-panel-title>
+
+                    <mat-panel-description>
+                      {{ step.instructions }}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+                  <div class="step-title">
+                    <h4>Distance: <span>{{ step.distance.text }}</span></h4>
+                    <h4>Duration: <span>{{ step.duration.text }}</span></h4>
+                  </div>
+
+                  <div *ngIf="step.travel_mode === 'TRANSIT'" class="step-transit">
+                    <h4 class="transit-info">Vehicle -
+                      <span [matBadge]="step.transit.line.short_name"
+                            [matBadgeDescription]="step.transit.line.short_name"
+                            [title]="step.transit.line.short_name || ''">
+
+                        {{ step.transit.line.vehicle.name }} <img [src]="step.transit.line.vehicle.icon" alt="Icon vehicle">
+                      </span>
+                    </h4>
+                    <h4 class="transit-info">
+                      Departure Stop - <span>{{ step.transit.departure_stop.name }}</span>
+                    </h4>
+                    <h4 class="transit-info">
+                      Arrival Stop - <span>{{ step.transit.arrival_stop.name }}</span>
+                    </h4>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+</div>
+

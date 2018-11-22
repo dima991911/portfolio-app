@@ -1,0 +1,40 @@
+<mat-card class="login-box" *ngIf="formLogin">
+  <div class="load" *ngIf="load">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <form [formGroup]="formLogin">
+    <mat-form-field class="input-box">
+      <input matInput
+             formControlName="login"
+             placeholder="Login">
+
+      <mat-error *ngIf="formLogin.controls['login'].hasError('required') &&
+                      formLogin.controls['login'].touched">
+
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-box">
+      <input matInput
+             type="password"
+             formControlName="password"
+             placeholder="Password"/>
+
+      <mat-error *ngIf="formLogin.controls['password'].hasError('required') &&
+                        formLogin.controls['password'].touched">
+
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button
+            class="form-button"
+            (click)="loginUser()"
+            [disabled]="formLogin.invalid">
+
+      Login
+    </button>
+  </form>
+</mat-card>

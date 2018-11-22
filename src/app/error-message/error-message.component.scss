@@ -1,0 +1,17 @@
+.error-massage {
+  width: 300px;
+  padding: 15px;
+  background: #2d2d2d;
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: bold;
+  z-index: 1000;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+
+  @media (max-width: 576px) {
+    width: 200px;
+    font-size: 14px;
+  }
+}

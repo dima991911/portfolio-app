@@ -1,0 +1,71 @@
+<div class="container-fluid contact page-container">
+    <h1>Contact me</h1>
+
+    <div class="row">
+        <div class="col-md-6 about">
+            <div class="about-description">
+                <p>If you have any question feel free to contact me, please use chat on the right and I will answer you as soon as possible(You don't need to give any of your data). Alternatively send an email to dimon4uk.ds@gmail.com.</p>
+                <p>Check this page from time to time. You can also write me in the contact list below.</p>
+            </div>
+            <div class="about-social">
+                <h3>Connect with me</h3>
+                <div class="social-icon-block">
+                    <a href="https://www.facebook.com/profile.php?id=100005317208431" target="_blank"><span class="social-icon"><fa name="facebook-f"></fa></span></a>
+                    <a href="https://www.linkedin.com/in/dmytro-skochko" target="_blank"><span class="social-icon"><fa name="linkedin"></fa></span></a>
+                    <a href="https://t.me/dima991911" target="_blank"><span class="social-icon"><fa name="telegram"></fa></span></a>
+                    <a href="https://www.instagram.com/skochko_d" target="_blank"><span class="social-icon"><fa name="instagram"></fa></span></a>
+                    <a href="https://www.behance.net/vadymskochko" target="_blank"><span class="social-icon"><fa name="behance"></fa></span></a>
+                </div>
+                <div class="about-contact">
+                    <div class="about-contact-item">
+                        Gmail: <a href="mailto:dimon4uk.ds@gmail.com">dimon4uk.ds@gmail.com</a>
+                    </div>
+                    <div class="about-contact-item">
+                        Skype: <a href="skype:dima991911?chat">dima991911</a>
+                    </div>
+                    <div class="about-contact-item">
+                        Phone: <a href="tel:+38093437438">(093)437-41-38</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="dialog">
+            <div class="load" *ngIf="load">
+                <img src="assets/loader.gif" alt="Load">
+            </div>
+
+            <div class="warn-message" *ngIf="messages.length === 0 && !load">
+                <h3>WRITE ME HERE</h3>
+            </div>
+
+            <div class="message"
+                 *ngFor="let mes of messages"
+                 [ngClass]="{'message-admin': mes.admin}">
+
+                {{ mes.message }}
+                <div class="time">
+                    {{ mes.created_at }}
+                </div>
+
+                <div *ngIf="mes.admin" class="admin-avatar">
+                    <img src="assets/avatar.jpg" alt="avatar">
+                </div>
+            </div>
+          </div>
+
+          <div class="send-message">
+            <textarea type="text" [(ngModel)]="message" class="textarea-message" placeholder="Message"></textarea>
+
+            <button mat-raised-button
+                    [disabled]="!message"
+                    class="send-button"
+                    (click)="sendMessage()">
+                Send
+            </button>
+          </div>
+
+        </div>
+    </div>
+</div>

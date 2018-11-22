@@ -1,0 +1,26 @@
+<div class="loader" *ngIf="!places">
+    <img src="assets/loader.gif" alt="">
+</div>
+
+<h2 mat-dialog-title mat-dialog-title>{{ data.city.name }}</h2>
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col-md-6 place" *ngFor="let place of places">
+            <mat-card>
+                <mat-card-title [title]="place.name">
+                    {{ place.name | uppercase }}
+                </mat-card-title>
+
+                <mat-card-subtitle>
+                    {{ place.vicinity }}
+                </mat-card-subtitle>
+
+                <img mat-card-image *ngIf="place.photos" [src]="place?.photos[0].getUrl({maxWidth: 500, maxHeight: 100})" alt="">
+                <img mat-card-image *ngIf="!place.photos" src="assets/lviv.jpg">
+                <mat-card-footer>
+                    ★ {{ place.rating }}
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>

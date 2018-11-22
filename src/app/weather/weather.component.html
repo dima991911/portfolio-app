@@ -1,0 +1,74 @@
+<div class="container-fluid map-container page-container">
+  <h1>Weather in world</h1>
+  <div class="row">
+    <div class="col-md-8 google-map">
+      <mat-card>
+        <agm-map *ngIf="startLng && startLat"
+                 id="map"
+                 [latitude]="startLat"
+                 [longitude]="startLng"
+                 [zoom]="zoom"
+                 [mapTypeId]="typeView"
+                 (mapClick)="mapClick($event)"
+                 (mapReady)="initMap($event)"
+                 (zoomChange)="zoomChange($event)">
+
+          <agm-marker *ngFor="let place of weatherCities; let i = index"
+                      [latitude]="place.lat"
+                      [longitude]="place.lng"
+                      (markerClick)="markerClick($event, i)"
+                      animation="DROP">
+
+          </agm-marker>
+        </agm-map>
+      </mat-card>
+    </div>
+    <div class="col-md-4">
+      <div>
+        <mat-form-field class="form-item">
+          <mat-select [(ngModel)]="typeView">
+
+            <mat-option value="roadmap">Road map</mat-option>
+            <mat-option value="hybrid">Hybrid</mat-option>
+            <mat-option value="satellite">Satellite</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-item">
+          <mat-select [(ngModel)]="zoom" placeholder="Map zoom">
+            <mat-option *ngFor="let zoom of createZoomCounts(20)"
+                        [value]="zoom">
+                        {{ zoom }}
+
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-item">
+          <input #searchStreet matInput placeholder="Street">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid weather-wrapper">
+  <div class="loader-city" *ngIf="!weatherCities">
+    <img src="assets/loader.gif" alt="Loader">
+  </div>
+
+  <div class="row"
+       *ngIf="weatherCities?.length > 0">
+
+    <div class="col-lg-4 col-md-6 col-sm-12 weather-city-block" [@fadeAnimation] *ngFor="let city of weatherCities">
+      <app-weather-city [weather]="city"
+                        [map]="map"
+                        (imageLoaded)="changeCities($event)">
+
+      </app-weather-city>
+    </div>
+  </div>
+  <div class="weather-warning" *ngIf="weatherCities?.length === 0">
+    You don't have any cities weather
+  </div>
+</div>
